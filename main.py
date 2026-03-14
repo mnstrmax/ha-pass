@@ -14,6 +14,7 @@ from app import ha_client
 from app.config import settings
 from app.rate_limiter import rate_limiter
 from app.routers import admin, guest
+from app.theme import brand_bg_dark, brand_css
 
 logging.basicConfig(
     level=logging.INFO,
@@ -127,7 +128,7 @@ async def root():
 @app.get("/admin/dashboard", include_in_schema=False)
 async def admin_dashboard_page(request: Request):
     from app.models import NEVER_EXPIRES_SECONDS
-    return _templates.TemplateResponse("admin_dashboard.html", {"request": request, "app_name": settings.app_name, "never_expires": NEVER_EXPIRES_SECONDS, "brand_bg": settings.brand_bg, "brand_primary": settings.brand_primary, "csp_nonce": request.state.csp_nonce})
+    return _templates.TemplateResponse("admin_dashboard.html", {"request": request, "app_name": settings.app_name, "never_expires": NEVER_EXPIRES_SECONDS, "brand_bg": settings.brand_bg, "brand_bg_dark": brand_bg_dark, "brand_primary": settings.brand_primary, "brand_css": brand_css, "csp_nonce": request.state.csp_nonce})
 
 
 # M-6: Health check with WS and DB status

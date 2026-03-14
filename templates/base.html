@@ -20,6 +20,7 @@
   {% block fouc_extra %}{% endblock %}
 })();
 </script>
+{% if brand_css %}<style nonce="{{ csp_nonce }}">{{ brand_css | safe }}</style>{% endif %}
 {% block head_styles %}{% endblock %}
 </head>
 <body {% block body_attrs %}{% endblock %}>

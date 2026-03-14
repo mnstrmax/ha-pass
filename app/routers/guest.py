@@ -20,6 +20,7 @@ from app import ha_client
 from app.config import settings
 from app.models import CommandRequest, NEVER_EXPIRES_SECONDS
 from app.rate_limiter import rate_limiter
+from app.theme import brand_bg_dark, brand_css
 
 router = APIRouter(prefix="/g")
 
@@ -123,7 +124,7 @@ async def guest_pwa(request: Request, slug: str = Path(max_length=64)):
     if expired:
         return templates.TemplateResponse(
             "expired.html",
-            {"request": request, "slug": slug, "app_name": settings.app_name, "contact_message": settings.contact_message, "brand_bg": settings.brand_bg, "brand_primary": settings.brand_primary, "csp_nonce": request.state.csp_nonce},
+            {"request": request, "slug": slug, "app_name": settings.app_name, "contact_message": settings.contact_message, "brand_bg": settings.brand_bg, "brand_bg_dark": brand_bg_dark, "brand_primary": settings.brand_primary, "brand_css": brand_css, "csp_nonce": request.state.csp_nonce},
             status_code=410,
         )
 
@@ -136,7 +137,7 @@ async def guest_pwa(request: Request, slug: str = Path(max_length=64)):
     )
     return templates.TemplateResponse(
         "guest_pwa.html",
-        {"request": request, "slug": slug, "label": row["label"], "expires_at": row["expires_at"], "app_name": settings.app_name, "contact_message": settings.contact_message, "never_expires": NEVER_EXPIRES_SECONDS, "brand_bg": settings.brand_bg, "brand_primary": settings.brand_primary, "csp_nonce": request.state.csp_nonce},
+        {"request": request, "slug": slug, "label": row["label"], "expires_at": row["expires_at"], "app_name": settings.app_name, "contact_message": settings.contact_message, "never_expires": NEVER_EXPIRES_SECONDS, "brand_bg": settings.brand_bg, "brand_bg_dark": brand_bg_dark, "brand_primary": settings.brand_primary, "brand_css": brand_css, "csp_nonce": request.state.csp_nonce},
     )
 
 
