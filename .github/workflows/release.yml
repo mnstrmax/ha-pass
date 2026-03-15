@@ -12,6 +12,34 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
+  # When a version tag is pushed, update config.yaml to match and commit to main.
+  # This keeps the HA add-on version in sync with the Docker image tag.
+  sync-addon-version:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Update config.yaml version from tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          sed -i "s/^version: .*/version: \"${VERSION}\"/" config.yaml
+          echo "Version set to ${VERSION}"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add config.yaml
+          git diff --cached --quiet && echo "Already up to date" && exit 0
+          git commit -m "Bump add-on version to ${GITHUB_REF_NAME#v}"
+          git push
+
   build:
     runs-on: ubuntu-latest
     permissions:
@@ -50,6 +78,12 @@ jobs:
             type=semver,pattern={{major}}
             # SHA for traceability
             type=sha,prefix=
+
+      - name: Stamp config.yaml version in build context
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          sed -i "s/^version: .*/version: \"${VERSION}\"/" config.yaml
 
       - name: Build and push
         uses: docker/build-push-action@v6
