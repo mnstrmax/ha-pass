@@ -73,6 +73,7 @@ jobs:
           tags: |
             # Push to main → :dev
             type=raw,value=dev,enable={{is_default_branch}}
+            type=raw,value=latest,enable={{is_default_branch}}
             # Tag v1.2.3 → :1.2.3, :1.2, :1, :latest
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
