@@ -2,7 +2,7 @@ name: HAPass
 version: "0.2.1"
 slug: ha-pass
 description: Shareable guest links for controlling Home Assistant devices
-url: "https://github.com/antwertinger/ha-pass"
+url: "https://github.com/mnstrmax/ha-pass"
 arch: [amd64, aarch64]
 startup: application
 boot: auto
@@ -33,4 +33,4 @@ schema:
   brand_bg: str
   brand_primary: str
   guest_url: "str?"
-image: "ghcr.io/antwertinger/ha-pass"
+image: "ghcr.io/mnstrmax/ha-pass"
