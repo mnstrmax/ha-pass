@@ -20,3 +20,6 @@ configuration:
   guest_url:
     name: Guest URL
     description: "External base URL for guest links (e.g., https://guest.myhouse.com). Leave empty for local network."
+  language:
+    name: Language
+    description: "Language of the admin dashboard and guest pages (en or de)."

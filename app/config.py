@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -17,6 +19,7 @@ class Settings(BaseSettings):
     brand_primary: str = "#D9523C"
     supervisor_token: str = ""
     guest_url: str = ""
+    ui_language: Literal["en", "de"] = "en"
 
     @model_validator(mode="after")
     def _require_credentials_in_standalone(self):

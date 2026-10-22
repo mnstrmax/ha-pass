@@ -16,3 +16,4 @@ services:
       # - PORT=5880
       # - BRAND_BG=#F2F0E9
       # - BRAND_PRIMARY=#D9523C
+      # - UI_LANGUAGE=de

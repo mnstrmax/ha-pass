@@ -1,10 +1,11 @@
 // Shared domain configuration — single source of truth for guest + admin UIs.
 // To add a new HA entity domain, edit only this file.
 const DOMAIN_ORDER = ['light','switch','input_boolean','climate','lock','media_player','cover','fan','sensor','binary_sensor'];
+// Labels come from the locale files (domain.<name>); requires util.js.
 const DOMAIN_LABELS = {
-  light: 'Lights', switch: 'Switches', input_boolean: 'Switches', climate: 'Climate',
-  lock: 'Locks', media_player: 'Media', cover: 'Covers', fan: 'Fans',
-  sensor: 'Sensors', binary_sensor: 'Binary Sensors',
+  light: tr('domain.light'), switch: tr('domain.switch'), input_boolean: tr('domain.switch'), climate: tr('domain.climate'),
+  lock: tr('domain.lock'), media_player: tr('domain.media_player'), cover: tr('domain.cover'), fan: tr('domain.fan'),
+  sensor: tr('domain.sensor'), binary_sensor: tr('domain.binary_sensor'),
 };
 const DOMAIN_ICONS = {
   light: 'lightbulb', switch: 'toggle_on', input_boolean: 'toggle_on', climate: 'thermostat',

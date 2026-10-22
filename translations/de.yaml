@@ -1,0 +1,25 @@
+configuration:
+  admin_username:
+    name: Admin-Benutzername
+    description: "Nur für den direkten Zugriff über den Port nötig. Nicht erforderlich bei Nutzung über die HA-Seitenleiste."
+  admin_password:
+    name: Admin-Passwort
+    description: "Nur für den direkten Zugriff über den Port nötig. Nicht erforderlich bei Nutzung über die HA-Seitenleiste. Mindestens 8 Zeichen."
+  app_name:
+    name: App-Name
+    description: Name, der Gästen angezeigt wird
+  contact_message:
+    name: Kontakthinweis
+    description: "Hinweis, der angezeigt wird, wenn ein Gastlink abgelaufen ist. Der englische Standardtext wird automatisch übersetzt."
+  brand_bg:
+    name: Hintergrundfarbe
+    description: "Hex-Farbe für den Seitenhintergrund (z. B. #F2F0E9)"
+  brand_primary:
+    name: Akzentfarbe
+    description: "Hex-Farbe für Akzente und Schaltflächen (z. B. #D9523C)"
+  guest_url:
+    name: Gast-URL
+    description: "Externe Basis-URL für Gastlinks (z. B. https://gast.meinhaus.de). Leer lassen für das lokale Netzwerk."
+  language:
+    name: Sprache
+    description: "Sprache der Verwaltungsoberfläche und der Gastseiten (en oder de)."

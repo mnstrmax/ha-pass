@@ -17,7 +17,7 @@ from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
 from fastapi.templating import Jinja2Templates
 
 from app import database as db
-from app import ha_client
+from app import ha_client, i18n
 from app.config import settings
 from app.context import base_context
 from app.models import (
@@ -183,14 +183,14 @@ async def guest_pwa(background_tasks: BackgroundTasks, request: Request, slug: s
 
     if expired:
         ctx = base_context(request)
-        ctx.update({"slug": slug, "contact_message": settings.contact_message})
+        ctx.update({"slug": slug, "contact_message": i18n.contact_message()})
         return templates.TemplateResponse(request, "expired.html", ctx, status_code=410)
 
     try:
         _enforce_ip_allowlist(row, request)
     except HTTPException as exc:
         ctx = base_context(request)
-        ctx.update({"slug": slug, "contact_message": settings.contact_message})
+        ctx.update({"slug": slug, "contact_message": i18n.contact_message()})
         return templates.TemplateResponse(request, "expired.html", ctx, status_code=exc.status_code)
     await db.touch_token(row["id"])
     await db.log_access(
@@ -205,7 +205,7 @@ async def guest_pwa(background_tasks: BackgroundTasks, request: Request, slug: s
         "slug": slug,
         "label": row["label"],
         "expires_at": row["expires_at"],
-        "contact_message": settings.contact_message,
+        "contact_message": i18n.contact_message(),
         "never_expires": NEVER_EXPIRES_SECONDS,
     })
     return templates.TemplateResponse(request, "guest_pwa.html", ctx)
@@ -221,7 +221,7 @@ async def guest_manifest(request: Request, slug: str = Path(max_length=64)):
     manifest = {  # colors must match static/input.css
         "name": settings.app_name,
         "short_name": settings.app_name[:12],
-        "description": "Temporary home controls",
+        "description": i18n.t("manifest.description"),
         "start_url": f"{bp}/g/{slug}",
         "scope": f"{bp}/g/{slug}",
         "display": "standalone",

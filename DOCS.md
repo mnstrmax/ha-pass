@@ -32,3 +32,4 @@ Set these options in the add-on Configuration tab:
 | **Background Color** | Hex color for page background (e.g., `#F2F0E9`) |
 | **Primary Color** | Hex color for accents and buttons (e.g., `#D9523C`) |
 | **Guest URL** | External base URL for guest links (e.g., `https://guest.myhouse.com`). Leave empty for local network. |
+| **Language** | UI language for the admin dashboard and guest pages: `en` (English) or `de` (German). |

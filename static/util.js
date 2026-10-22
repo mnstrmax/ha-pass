@@ -1,5 +1,16 @@
 // ── Shared Utilities ──────────────────────────────────────────────
 
+/** Look up a UI string (I18N is injected by base.html) and fill {placeholders}. */
+function tr(key, vars) {
+  const s = (typeof I18N !== 'undefined' && I18N[key]) || key;
+  return vars ? s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k]) : m)) : s;
+}
+
+/** Like tr(), but returns fallback when there is no string for key. */
+function trOr(key, fallback) {
+  return (typeof I18N !== 'undefined' && I18N[key]) || fallback;
+}
+
 /** HTML-escape a string for safe innerHTML insertion. */
 function esc(str) {
   return String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');

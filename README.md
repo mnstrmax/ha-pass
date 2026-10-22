@@ -30,6 +30,7 @@ installs, just a link.
 - **Service allowlist** — only safe services (toggle, set_temperature, etc.) are permitted
 - **Rate limiting** — 30 req/min per token
 - **IP allowlisting** — optionally restrict tokens to specific CIDRs
+- **Multilingual UI** — English and German
 
 ## Installation
 
@@ -104,6 +105,7 @@ Set these in **Settings → Add-ons → HAPass → Configuration**:
 | **Background Color** | Hex color for page background | `#F2F0E9` |
 | **Primary Color** | Hex color for accents and buttons | `#D9523C` |
 | **Guest URL** | External base URL for guest links (e.g. `https://guest.myhouse.com`) | — |
+| **Language** | UI language for admin and guest pages: `en` or `de` | `en` |
 
 ### Docker Environment Variables
 
@@ -120,6 +122,7 @@ Set these in **Settings → Add-ons → HAPass → Configuration**:
 | `BRAND_BG` | Background color (hex) | No | `#F2F0E9` |
 | `BRAND_PRIMARY` | Primary/accent color (hex) | No | `#D9523C` |
 | `GUEST_URL` | External base URL for guest links | No | — |
+| `UI_LANGUAGE` | UI language for admin and guest pages (`en`, `de`) | No | `en` |
 
 ## Home Assistant Activity Events
 
