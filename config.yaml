@@ -1,8 +1,8 @@
 name: HAPass
-version: "0.2.4"
+version: "0.2.4-de.1"
 slug: ha-pass
 description: Shareable guest links for controlling Home Assistant devices
-url: "https://github.com/rohithkadaveru/ha-pass"
+url: "https://github.com/mnstrmax/ha-pass"
 arch: [amd64, aarch64]
 startup: application
 boot: auto
@@ -25,7 +25,7 @@ options:
   brand_bg: "#F2F0E9"
   brand_primary: "#D9523C"
   guest_url: ""
-  language: en
+  language: de
 schema:
   admin_username: "str?"
   admin_password: "password?"
@@ -35,4 +35,4 @@ schema:
   brand_primary: str
   guest_url: "str?"
   language: list(en|de)
-image: "ghcr.io/rohithkadaveru/ha-pass"
+image: "ghcr.io/mnstrmax/ha-pass"
